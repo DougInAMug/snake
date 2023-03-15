@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .grid-rows-21 {
+        grid-template-rows: repeat(21, minmax(0, 1fr));
+    }
+    .grid-cols-21 {
+        grid-template-columns: repeat(21, minmax(0, 1fr));
+    }
+    .border-1 {
+        border-width: 1px;
+    }
+}
