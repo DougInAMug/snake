@@ -1,5 +1,3 @@
-import { DirectionKeys, Coordinate } from './type'
-
 // unchanged during play
 export const ROWS = 21;
 export const COLS = 21;
