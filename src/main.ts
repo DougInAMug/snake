@@ -1,9 +1,14 @@
 import './style.css'
-import { ROWS, COLS, DIRECTIONS } from  './gameConfig'
+import { ROWS, COLS, DIRECTIONS, SNAKE_CELLS, APPLE_CELL, DIRECTION, SCORE, GAME_END_CONDITION, SNAKE_MOVE_SPEED, APPLE_COLOR, SNAKE_COLOR, CELL_COLOR, CELL_STYLES, GAME_OVER_STYLES } from  './gameConfig'
 import { Coordinate, DirectionKeys } from './type'
 import { modulus, coordToId, randomCoord, switchCellColorFromTo } from './utils';
 
-
+let snakeCells = SNAKE_CELLS;
+let appleCell = APPLE_CELL;
+let direction = DIRECTION;
+let score = SCORE;
+let gameEndCondition = GAME_END_CONDITION;
+let snakeMoveSpeed = SNAKE_MOVE_SPEED;
 
 function initializeSnakeBoard() {
     const snakeBoard = document.getElementById("snakeBoard")!;
@@ -15,8 +20,8 @@ function initializeSnakeBoard() {
     for (let row = 0; row < COLS; row++) {
         for (let col = 0; col < ROWS; col++) {
             let cell = document.createElement("div");
-            cell.classList.add(...cellStyles);
-            cell.classList.toggle(cellColor);
+            cell.classList.add(...CELL_STYLES);
+            cell.classList.toggle(CELL_COLOR);
             cell.id = coordToId(col, row);
             snakeBoard?.appendChild(cell);
         }
@@ -25,7 +30,7 @@ function initializeSnakeBoard() {
 
 function initializeSnake() {
     for (let i = 0; i < snakeCells.length; i++) {
-        switchCellColorFromTo(snakeCells[i], cellColor, snakeColor);
+        switchCellColorFromTo(snakeCells[i], CELL_COLOR, SNAKE_COLOR);
     }
 }
 
@@ -41,7 +46,7 @@ function moveSnake(direction: DirectionKeys) {
             gameEndCondition = true;
             let gameOver = document.createElement("div");
             gameOver.innerHTML = "Oh dear, you snekked yourself!";
-            gameOver.classList.add(...gameOverStyles);
+            gameOver.classList.add(...GAME_OVER_STYLES);
             const snakeBoard = document.getElementById("snakeBoard")!;
             snakeBoard?.appendChild(gameOver);
             return;
@@ -53,12 +58,12 @@ function moveSnake(direction: DirectionKeys) {
         score++;
         const scoreDisplay = document.getElementById("playerScore")!
         scoreDisplay.innerText = `${score}`;
-        switchCellColorFromTo(nextHead, snakeColor, appleColor);
+        switchCellColorFromTo(nextHead, SNAKE_COLOR, APPLE_COLOR);
         appleCell = [];
     } else {
-        switchCellColorFromTo(nextHead, snakeColor, cellColor);
+        switchCellColorFromTo(nextHead, SNAKE_COLOR, CELL_COLOR);
         let tail: Coordinate = snakeCells[0];
-        switchCellColorFromTo(tail, snakeColor, cellColor);
+        switchCellColorFromTo(tail, SNAKE_COLOR, CELL_COLOR);
         snakeCells.shift();
     };
     snakeCells.push(nextHead);
@@ -71,7 +76,7 @@ function placeApple() {
             placementCoord = randomCoord(COLS, ROWS);
         }
         appleCell.push(...placementCoord);
-        switchCellColorFromTo(placementCoord, appleColor, cellColor);
+        switchCellColorFromTo(placementCoord, APPLE_COLOR, CELL_COLOR);
     }
 }
 
@@ -126,11 +131,12 @@ document.getElementById("speedSlider")?.addEventListener("change", (e) => {
 })
 
 document.getElementById("buttonStart")?.addEventListener("click", () => {
-    snakeCells = [[9, 10], [10, 10], [11, 10]];
-    appleCell = [];
-    direction = "ArrowRight";
-    score = 0;
-    gameEndCondition = false;
+    snakeCells = SNAKE_CELLS;
+    appleCell = APPLE_CELL;
+    direction = DIRECTION;
+    score = SCORE;
+    gameEndCondition = GAME_END_CONDITION;
+    snakeMoveSpeed = SNAKE_MOVE_SPEED;
     window.requestAnimationFrame(gameLoop);
     initializeSnakeBoard();
     initializeSnake();

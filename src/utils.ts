@@ -1,3 +1,4 @@
+import { APPLE_CELL, DIRECTION, GAME_END_CONDITION, SCORE, SNAKE_CELLS, SNAKE_MOVE_SPEED } from './gameConfig';
 import { Coordinate } from './type'
 
 export function modulus(n: number, m: number) {
@@ -20,5 +21,3 @@ export function switchCellColorFromTo(coord: Coordinate, colorInitial: string, c
     cell?.classList.toggle(colorInitial);
     cell?.classList.toggle(colorFinal);
 }
-
-export function 
