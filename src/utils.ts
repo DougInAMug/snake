@@ -1,4 +1,3 @@
-import { APPLE_CELL, DIRECTION, GAME_END_CONDITION, SCORE, SNAKE_CELLS, SNAKE_MOVE_SPEED } from './gameConfig';
 import { Coordinate } from './type'
 
 export function modulus(n: number, m: number) {

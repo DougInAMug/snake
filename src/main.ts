@@ -1,14 +1,14 @@
 import './style.css'
-import { ROWS, COLS, DIRECTIONS, SNAKE_CELLS, APPLE_CELL, DIRECTION, SCORE, GAME_END_CONDITION, SNAKE_MOVE_SPEED, APPLE_COLOR, SNAKE_COLOR, CELL_COLOR, CELL_STYLES, GAME_OVER_STYLES } from  './gameConfig'
+import { ROWS, COLS, DIRECTIONS, APPLE_COLOR, SNAKE_COLOR, CELL_COLOR, CELL_STYLES, GAME_OVER_STYLES } from  './gameConfig'
 import { Coordinate, DirectionKeys } from './type'
 import { modulus, coordToId, randomCoord, switchCellColorFromTo } from './utils';
 
-let snakeCells = SNAKE_CELLS;
-let appleCell = APPLE_CELL;
-let direction = DIRECTION;
-let score = SCORE;
-let gameEndCondition = GAME_END_CONDITION;
-let snakeMoveSpeed = SNAKE_MOVE_SPEED;
+let snakeCells: Array<Coordinate> = [[9, 10], [10, 10], [11, 10]];
+let appleCell: number[] = [];
+let direction: DirectionKeys = "ArrowRight";
+let score: number = 0;
+let gameEndCondition: boolean = false;
+let snakeMoveSpeed: number = 1000;
 
 function initializeSnakeBoard() {
     const snakeBoard = document.getElementById("snakeBoard")!;
@@ -131,12 +131,12 @@ document.getElementById("speedSlider")?.addEventListener("change", (e) => {
 })
 
 document.getElementById("buttonStart")?.addEventListener("click", () => {
-    snakeCells = SNAKE_CELLS;
-    appleCell = APPLE_CELL;
-    direction = DIRECTION;
-    score = SCORE;
-    gameEndCondition = GAME_END_CONDITION;
-    snakeMoveSpeed = SNAKE_MOVE_SPEED;
+    snakeCells = [[9, 10], [10, 10], [11, 10]];
+    appleCell = [];
+    direction = "ArrowRight";
+    score = 0;
+    gameEndCondition = false;
+    snakeMoveSpeed = 1000;
     window.requestAnimationFrame(gameLoop);
     initializeSnakeBoard();
     initializeSnake();

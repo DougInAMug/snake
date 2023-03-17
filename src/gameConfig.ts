@@ -1,21 +1,24 @@
 import { DirectionKeys, Coordinate } from './type'
 
-// number of board cols and rows
+// unchanged during play
 export const ROWS = 21;
 export const COLS = 21;
-export const SNAKE_CELLS: Array<Coordinate> = [[9, 10], [10, 10], [11, 10]];
-export const APPLE_CELL: number[] = [];
-export const DIRECTION: DirectionKeys = "ArrowRight";
-export const SCORE: number = 0;
-export const GAME_END_CONDITION: boolean = false;
-export const SNAKE_MOVE_SPEED: number = 1000;
-
 export const DIRECTIONS = { 
     "ArrowUp":    [ 0, -1],
     "ArrowDown":  [ 0,  1],
     "ArrowLeft":  [-1,  0],
     "ArrowRight": [ 1,  0]
 }
+
+// changed during play
+// export const SNAKE_CELLS: Array<Coordinate> = [[9, 10], [10, 10], [11, 10]];
+// export const APPLE_CELL: number[] = [];
+// export const DIRECTION: DirectionKeys = "ArrowRight";
+// export const SCORE: number = 0;
+// export const GAME_END_CONDITION: boolean = false;
+// export const SNAKE_MOVE_SPEED: number = 1000;
+
+
 
 // Colours and styles
 export const APPLE_COLOR = "bg-red-500";
