@@ -137,12 +137,11 @@ document.getElementById("buttonStart")?.addEventListener("click", () => {
     score = 0;
     gameEndCondition = false;
     snakeMoveSpeed = 1000;
-    window.requestAnimationFrame(gameLoop);
     initializeSnakeBoard();
     initializeSnake();
 })
 
-window.requestAnimationFrame(gameLoop);
 initializeSnakeBoard();
 initializeSnake();
 addArrowControl();
+window.requestAnimationFrame(gameLoop);
